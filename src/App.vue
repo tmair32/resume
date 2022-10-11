@@ -5,4 +5,10 @@
   <router-view :key="$route.fullPath" />
 </template>
 
-<style scoped></style>
+<style lang="scss">
+#app {
+  @apply bg-[#ebeaf0];
+  @apply scroll-smooth overscroll-y-contain overflow-x-hidden;
+  @apply box-border;
+}
+</style>
