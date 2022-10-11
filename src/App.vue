@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <pre-loader />
+  <!-- <pre-loader /> -->
   <router-view :key="$route.fullPath" />
 </template>
 
