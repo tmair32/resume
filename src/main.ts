@@ -7,7 +7,6 @@ import {
   createWebHistory,
   RouterScrollBehavior,
 } from "vue-router";
-import gsap from "gsap";
 
 import "virtual:windi.css";
 import "virtual:windi-devtools";
@@ -40,6 +39,4 @@ const router = createRouter({
 });
 
 app.use(router);
-
-app.provide("gsap", gsap);
 app.mount("#app");
