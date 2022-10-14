@@ -106,6 +106,7 @@ onMounted(() => {
   };
 
   const galleryDraggable = Draggable.create(".gallery", {
+    cursor: "default",
     bounds: ".wrapper",
     onDrag: alignMinimap,
     onThrowUpdate: alignMinimap,
@@ -113,6 +114,7 @@ onMounted(() => {
   })[0];
 
   const minimapDraggable = Draggable.create(".minimap__marker", {
+    cursor: "default",
     bounds: ".minimap",
     onDrag: alignGallery,
     onThrowUpdate: alignGallery,
@@ -140,7 +142,7 @@ const starsArray = ref([]);
           :client-height="2200"
           @update:stars="starsArray = $event"
         />
-        <div class="w-40 h-40 bg-rose-400 absolute top-[1000px] left-[400px]" />
+        <!-- <gallery /> -->
       </div>
       <div ref="minimapRef" class="minimap">
         <div ref="minimapMarkerRef" class="minimap__marker" />
