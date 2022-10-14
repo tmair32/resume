@@ -61,10 +61,14 @@ gsap.registerPlugin(Draggable, Observer);
 let galleryRef = ref<HTMLDivElement | null>(null),
   minimapRef = ref<HTMLDivElement | null>(null),
   minimapMarkerRef = ref<HTMLDivElement | null>(null),
-  minimapX = gsap.quickSetter(minimapMarkerRef.value, "x", "px"),
-  minimapY = gsap.quickSetter(minimapMarkerRef.value, "y", "px"),
-  galleryX = gsap.quickSetter(galleryRef.value, "x", "px"),
-  galleryY = gsap.quickSetter(galleryRef.value, "y", "px"),
+  minimapX = computed(() =>
+    gsap.quickSetter(minimapMarkerRef.value, "x", "px")
+  ),
+  minimapY = computed(() =>
+    gsap.quickSetter(minimapMarkerRef.value, "y", "px")
+  ),
+  galleryX = computed(() => gsap.quickSetter(galleryRef.value, "x", "px")),
+  galleryY = computed(() => gsap.quickSetter(galleryRef.value, "y", "px")),
   galleryScale = ref(0);
 
 const setupSizing = () => {
@@ -84,13 +88,13 @@ const setupSizing = () => {
 
 onMounted(() => {
   const alignMinimap = () => {
-    minimapX(-galleryDraggable.x * galleryScale.value);
-    minimapY(-galleryDraggable.y * galleryScale.value);
+    minimapX.value(-galleryDraggable.x * galleryScale.value);
+    minimapY.value(-galleryDraggable.y * galleryScale.value);
   };
 
   const alignGallery = () => {
-    galleryX(-minimapDraggable.x / galleryScale.value);
-    galleryY(-minimapDraggable.y / galleryScale.value);
+    galleryX.value(-minimapDraggable.x / galleryScale.value);
+    galleryY.value(-minimapDraggable.y / galleryScale.value);
   };
 
   const galleryDraggable = Draggable.create(".gallery", {
