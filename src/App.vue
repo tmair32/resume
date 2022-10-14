@@ -7,7 +7,6 @@
 
 <style lang="scss">
 #app {
-  @apply bg-[#ebeaf0];
   @apply scroll-smooth overscroll-y-contain overscroll-x-none;
   @apply box-border;
   @apply cursor-default;

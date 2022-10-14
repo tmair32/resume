@@ -69,36 +69,44 @@ let galleryRef = ref<HTMLDivElement | null>(null),
   ),
   galleryX = computed(() => gsap.quickSetter(galleryRef.value, "x", "px")),
   galleryY = computed(() => gsap.quickSetter(galleryRef.value, "y", "px")),
-  galleryScale = ref(0);
+  minimapToGalleryWidthScale = ref(0),
+  minimapToGalleryHeightScale = ref(0),
+  screenToGalleryWidthScale = ref(0),
+  screenToGalleryHeightScale = ref(0);
 
 const setupSizing = () => {
   if (!galleryRef.value || !minimapRef.value || !minimapMarkerRef.value) {
     return;
   }
-  galleryScale.value =
-    minimapRef.value.offsetWidth / galleryRef.value.offsetWidth;
-  const screenToGalleryRatio = clientWidth.value / galleryRef.value.offsetWidth;
-  const aspectRatio = clientWidth.value / clientHeight.value;
+  minimapToGalleryWidthScale.value =
+    minimapRef.value.offsetWidth / (galleryRef.value.offsetWidth + 1);
+  minimapToGalleryHeightScale.value =
+    minimapRef.value.offsetHeight / (galleryRef.value.offsetHeight + 1);
+  screenToGalleryWidthScale.value =
+    clientWidth.value / galleryRef.value.offsetWidth;
+  screenToGalleryHeightScale.value =
+    clientHeight.value / galleryRef.value.offsetHeight;
+  const aspectRatio = computed(() => clientWidth.value / clientHeight.value);
 
   gsap.set(minimapMarkerRef.value, {
-    width: screenToGalleryRatio * minimapRef.value.offsetWidth,
-    height: (screenToGalleryRatio * minimapRef.value.offsetWidth) / aspectRatio,
+    width: screenToGalleryWidthScale.value * minimapRef.value.offsetWidth,
+    height: screenToGalleryHeightScale.value * minimapRef.value.offsetHeight,
   });
 };
 
 onMounted(() => {
   const alignMinimap = () => {
-    minimapX.value(-galleryDraggable.x * galleryScale.value);
-    minimapY.value(-galleryDraggable.y * galleryScale.value);
+    minimapX.value(-galleryDraggable.x * minimapToGalleryWidthScale.value);
+    minimapY.value(-galleryDraggable.y * minimapToGalleryHeightScale.value);
   };
 
   const alignGallery = () => {
-    galleryX.value(-minimapDraggable.x / galleryScale.value);
-    galleryY.value(-minimapDraggable.y / galleryScale.value);
+    galleryX.value(-minimapDraggable.x / minimapToGalleryWidthScale.value);
+    galleryY.value(-minimapDraggable.y / minimapToGalleryHeightScale.value);
   };
 
   const galleryDraggable = Draggable.create(".gallery", {
-    bounds: window,
+    bounds: ".wrapper",
     onDrag: alignMinimap,
     onThrowUpdate: alignMinimap,
     inertia: true,
@@ -119,15 +127,28 @@ onMounted(() => {
   alignMinimap();
 });
 // Draw Screen
+
+// Stars
+const starsArray = ref([]);
 </script>
 <template>
   <div ref="pageRef" class="page" :style="cssVariables">
     <div id="wrapper" class="wrapper">
       <div ref="galleryRef" class="gallery">
+        <stars
+          :client-width="3600"
+          :client-height="2200"
+          @update:stars="starsArray = $event"
+        />
         <div class="w-40 h-40 bg-rose-400 absolute top-[1000px] left-[400px]" />
       </div>
       <div ref="minimapRef" class="minimap">
         <div ref="minimapMarkerRef" class="minimap__marker" />
+        <mini-scale-stars
+          :minimap-to-gallery-width-scale="minimapToGalleryWidthScale"
+          :minimap-to-gallery-height-scale="minimapToGalleryHeightScale"
+          :stars-array="starsArray"
+        />
       </div>
     </div>
   </div>
@@ -168,6 +189,7 @@ onMounted(() => {
   @apply w-[3600px] h-[2200px];
   @apply overflow-hidden;
   @apply subpixel-antialiased backface-hidden;
+  @apply bg-gradient-to-t from-[rgb(25,25,112)] via-[rgb(33,20,0)] to-[rgb(0,0,0)];
 }
 
 .minimap {
@@ -177,11 +199,11 @@ onMounted(() => {
   @apply z-20000;
   @apply rounded-lg;
   @apply shadow-md;
-  @apply bg-[#f5f5f5];
+  @apply bg-gradient-to-t from-[rgb(25,25,112)] via-[rgb(33,20,0)] to-[rgb(0,0,0)];
 
   &__marker {
     @apply absolute;
-    @apply bg-[#D0D0D0];
+    @apply border-1 border-white;
   }
 }
 
