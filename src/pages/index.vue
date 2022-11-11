@@ -10,8 +10,8 @@ const shinyY = ref(0);
 const shinyX = ref(0);
 
 const handleMouseMove = (e: MouseEvent) => {
-  if (pageRef.value) {
-    const { x, y } = pageRef.value.getBoundingClientRect();
+  if (galleryRef.value) {
+    const { x, y } = galleryRef.value.getBoundingClientRect();
     requestAnimationFrame(() => {
       shinyX.value = e.clientX - x;
       shinyY.value = e.clientY - y;
@@ -27,8 +27,8 @@ const cssVariables = computed(() => {
 });
 
 onMounted(() => {
-  if (pageRef.value) {
-    pageRef.value.addEventListener("mousemove", handleMouseMove);
+  if (galleryRef.value) {
+    galleryRef.value.addEventListener("mousemove", handleMouseMove);
   }
 });
 
@@ -134,9 +134,9 @@ onMounted(() => {
 const starsArray = ref([]);
 </script>
 <template>
-  <div ref="pageRef" class="page" :style="cssVariables">
+  <div ref="pageRef" class="page">
     <div id="wrapper" class="wrapper">
-      <div ref="galleryRef" class="gallery">
+      <div ref="galleryRef" class="gallery" :style="cssVariables">
         <stars
           :client-width="3600"
           :client-height="2200"
@@ -164,30 +164,12 @@ const starsArray = ref([]);
 .page {
   @apply w-full;
   transition: transform 0.6s cubic-bezier(0.35, 0.755, 0.42, 0.95);
-
-  &::after {
-    content: "";
-    @apply absolute;
-    @apply opacity-0;
-    transition: opacity 0.2s;
-    background: radial-gradient(#fde68a, #ebeaf0 80%);
-    @apply rounded-full;
-    @apply w-[500px] h-[500px];
-    top: calc(var(--shiny-y, 0) * 1px - 250px);
-    left: calc(var(--shiny-x, 0) * 1px - 250px);
-    animation: hue-rotate 1.5s ease-in-out infinite;
-  }
-
-  &:hover::after {
-    @apply opacity-40;
-  }
 }
 
 .wrapper {
   @apply relative;
   @apply h-screen;
   @apply overflow-hidden;
-  @apply z-2;
 }
 
 .gallery {
@@ -196,6 +178,23 @@ const starsArray = ref([]);
   @apply overflow-hidden;
   @apply subpixel-antialiased backface-hidden;
   @apply bg-gradient-to-t from-[rgb(25,25,112)] via-[rgb(33,20,0)] to-[rgb(0,0,0)];
+
+  &::after {
+    content: "";
+    @apply absolute;
+    @apply opacity-0;
+    transition: opacity 0.2s;
+    background: radial-gradient(#ffffff, transparent 80%);
+    @apply rounded-full;
+    @apply w-[200px] h-[200px];
+    top: calc(var(--shiny-y, 0) * 1px - 100px);
+    left: calc(var(--shiny-x, 0) * 1px - 100px);
+    animation: hue-rotate 1.5s ease-in-out infinite;
+  }
+
+  &:hover::after {
+    @apply opacity-40;
+  }
 }
 
 .minimap {

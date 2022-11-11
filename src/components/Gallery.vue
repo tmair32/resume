@@ -16,7 +16,7 @@ import { galleryItems } from "~/common/Items";
       <my-info />
     </template>
     <template #career>
-      <career />
+      <careers />
     </template>
   </card>
 </template>

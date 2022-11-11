@@ -35,7 +35,7 @@ const cardStyles = computed(() => {
   @apply w-[var(--card-width)] h-[var(--card-height)];
   @apply left-[var(--card-left)] top-[var(--card-top)];
   @apply transform duration-300 ease-in-out;
-  @apply bg-transparent;
+  @apply bg-current overflow-hidden;
   @apply border-1 border-solid border-opacity-50;
 
   &.minimap {
