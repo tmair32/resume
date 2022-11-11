@@ -1,48 +1,57 @@
 <script setup lang="ts">
 const props = defineProps<{
   title?: string;
-  image?: string;
-  link?: string;
-  width: number;
-  height: number;
+  width: string;
+  height: string;
+  left: string;
+  top: string;
+  minimap?: boolean;
 }>();
 
-const cardWidth = computed(() => {
-  return `w-[${props.width}px]`;
-});
-
-const cardHeight = computed(() => {
-  return `h-[${props.height}px]`;
-});
-
-const cardShadow = computed(() => {
-  const width = props.width;
-  const height = props.height;
+const cardStyles = computed(() => {
   return {
-    "--card-width": `${width}px`,
-    "--card-height": `${height}px`,
+    "--card-width": props.width,
+    "--card-height": props.height,
+    "--card-left": props.left,
+    "--card-top": props.top,
   };
 });
 </script>
 <template>
-  <div class="card" :class="[cardWidth, cardHeight]" :style="cardShadow">
-    <div v-if="title" class="card__title">
-      <slot name="title" :title="title" />
-    </div>
+  <div class="card" :class="{ minimap }" :style="cardStyles">
+    <div v-if="title" class="card__title">{{ title }}</div>
     <div class="card__content">
-      <slot name="content" />
+      <slot />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .card {
+  @apply absolute;
   @apply z-999;
-  @apply rounded-[33px];
-  @apply bg-[#ebeaf0];
-  box-shadow: calc(var(--card-width) * 0.05) calc(var(--card-height) * 0.05)
-      calc(var(--card-width) * 0.1) #dbdadf,
-    calc(var(--card-width) * -0.05) calc(var(--card-height) * -0.05)
-      calc(var(--card-width) * 0.1) #fbfaff;
+  @apply rounded-[10px];
+  @apply w-[var(--card-width)] h-[var(--card-height)];
+  @apply left-[var(--card-left)] top-[var(--card-top)];
+  @apply transform duration-300 ease-in-out;
+  @apply bg-transparent;
+  @apply border-1 border-solid border-opacity-5;
+
+  &.minimap {
+    @apply rounded-[5px];
+    @apply bg-white opacity-40;
+  }
+
+  &__title {
+    @apply w-full;
+    @apply text-sm text-center text-white;
+    @apply border-b-white border-1;
+    @apply rounded-t-[10px];
+    @apply min-h-6;
+  }
+
+  &:hover {
+    @apply scale-105;
+  }
 }
 </style>

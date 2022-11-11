@@ -142,7 +142,7 @@ const starsArray = ref([]);
           :client-height="2200"
           @update:stars="starsArray = $event"
         />
-        <!-- <gallery /> -->
+        <gallery />
       </div>
       <div ref="minimapRef" class="minimap">
         <div ref="minimapMarkerRef" class="minimap__marker" />
@@ -150,6 +150,10 @@ const starsArray = ref([]);
           :minimap-to-gallery-width-scale="minimapToGalleryWidthScale"
           :minimap-to-gallery-height-scale="minimapToGalleryHeightScale"
           :stars-array="starsArray"
+        />
+        <minimap
+          :minimap-to-gallery-width-scale="minimapToGalleryWidthScale"
+          :minimap-to-gallery-height-scale="minimapToGalleryHeightScale"
         />
       </div>
     </div>
