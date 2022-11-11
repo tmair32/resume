@@ -9,8 +9,8 @@ export const galleryItems = [
   },
   {
     name: "career",
-    width: "230px",
-    height: "500px",
+    width: "190px",
+    height: "254px",
     left: "480px",
     top: "400px",
   },
@@ -20,5 +20,11 @@ export const galleryItems = [
     height: "300px",
     left: "2400px",
     top: "400px",
+  },
+  {
+    width: "500px",
+    height: "500px",
+    left: "700px",
+    top: "1000px",
   },
 ];
