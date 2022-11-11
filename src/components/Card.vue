@@ -6,6 +6,7 @@ const props = defineProps<{
   left: string;
   top: string;
   minimap?: boolean;
+  name?: string;
 }>();
 
 const cardStyles = computed(() => {
@@ -21,7 +22,7 @@ const cardStyles = computed(() => {
   <div class="card" :class="{ minimap }" :style="cardStyles">
     <div v-if="title" class="card__title">{{ title }}</div>
     <div class="card__content">
-      <slot />
+      <slot :name="name" />
     </div>
   </div>
 </template>
@@ -35,7 +36,7 @@ const cardStyles = computed(() => {
   @apply left-[var(--card-left)] top-[var(--card-top)];
   @apply transform duration-300 ease-in-out;
   @apply bg-transparent;
-  @apply border-1 border-solid border-opacity-5;
+  @apply border-1 border-solid border-opacity-50;
 
   &.minimap {
     @apply rounded-[5px];
@@ -48,6 +49,11 @@ const cardStyles = computed(() => {
     @apply border-b-white border-1;
     @apply rounded-t-[10px];
     @apply min-h-6;
+  }
+
+  &__content {
+    @apply w-full h-[calc(var(--card-height)-1.5rem)];
+    @apply rounded-b-[10px];
   }
 
   &:hover {

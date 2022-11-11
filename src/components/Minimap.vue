@@ -26,12 +26,12 @@ const minimapItems = computed(() => {
 </script>
 <template>
   <card
-    v-for="gallery in minimapItems"
-    :key="gallery.title"
-    :width="gallery.width"
-    :height="gallery.height"
-    :left="gallery.left"
-    :top="gallery.top"
+    v-for="item in minimapItems"
+    :key="item.title"
+    :width="item.width"
+    :height="item.height"
+    :left="item.left"
+    :top="item.top"
     :minimap="true"
   />
 </template>

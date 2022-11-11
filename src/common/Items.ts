@@ -1,16 +1,18 @@
 export const galleryItems = [
   {
-    title: "Card 1",
+    name: "myInfo",
+    title: "jaechan / contact",
     width: "300px",
-    height: "300px",
-    left: "450px",
-    top: "550px",
+    height: "400px",
+    left: "850px",
+    top: "250px",
   },
   {
-    width: "200px",
+    name: "career",
+    width: "230px",
     height: "500px",
-    left: "800px",
-    top: "100px",
+    left: "480px",
+    top: "400px",
   },
   {
     title: "Card 3",

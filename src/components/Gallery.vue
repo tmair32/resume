@@ -10,7 +10,15 @@ import { galleryItems } from "~/common/Items";
     :height="gallery.height"
     :left="gallery.left"
     :top="gallery.top"
-  />
+    :name="gallery.name"
+  >
+    <template #myInfo>
+      <my-info />
+    </template>
+    <template #career>
+      <career />
+    </template>
+  </card>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped></style>
