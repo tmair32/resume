@@ -17,7 +17,7 @@ const minimapItems = computed(() => {
     return {
       ...item,
       width: `${widthNumber * props.minimapToGalleryWidthScale}px`,
-      height: `${heightNumber * props.minimapToGalleryHeightScale}px`,
+      height: `${heightNumber * props.minimapToGalleryWidthScale}px`,
       left: `${leftNumber * props.minimapToGalleryWidthScale}px`,
       top: `${topNumber * props.minimapToGalleryHeightScale}px`,
     };
