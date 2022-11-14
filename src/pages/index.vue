@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { CardType } from "~/types/common";
+
 import { gsap } from "gsap";
 import Draggable from "gsap/dist/Draggable";
 import Observer from "gsap/dist/Observer";
@@ -132,6 +134,30 @@ onMounted(() => {
 
 // Stars
 const starsArray = ref([]);
+
+// Click Minimap Card
+// 나중에 수정해야함
+// const moveCursor = (item: CardType) => {
+//   const { left, top } = item;
+
+//   gsap.to(galleryRef.value, {
+//     x:
+//       (-left * screenToGalleryWidthScale.value) /
+//       minimapToGalleryWidthScale.value,
+//     y:
+//       (-top * screenToGalleryHeightScale.value) /
+//       minimapToGalleryHeightScale.value,
+//     duration: 1,
+//     ease: "power3.out",
+//   });
+
+//   gsap.to(minimapMarkerRef.value, {
+//     x: left - minimapMarkerRef.value.offsetWidth / 2,
+//     y: top - minimapMarkerRef.value.offsetHeight / 2,
+//     duration: 1,
+//     ease: "power3.out",
+//   });
+// };
 </script>
 <template>
   <div ref="pageRef" class="page">
@@ -199,6 +225,7 @@ const starsArray = ref([]);
 
 .minimap {
   @apply <md: hidden;
+  @apply overflow-hidden;
   @apply fixed top-[10px] left-[10px];
   @apply w-80 h-60;
   @apply z-20000;

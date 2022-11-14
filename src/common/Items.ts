@@ -1,4 +1,6 @@
-export const galleryItems = [
+import { CardType } from "~/types/common";
+
+export const galleryItems: CardType[] = [
   {
     name: "myInfo",
     title: "jaechan / contact",
@@ -9,7 +11,8 @@ export const galleryItems = [
   },
   {
     name: "career",
-    width: "190px",
+    title: "career",
+    width: "200px",
     height: "254px",
     left: "480px",
     top: "400px",

@@ -21,7 +21,7 @@ const cardStyles = computed(() => {
 <template>
   <div class="card" :class="{ minimap }" :style="cardStyles">
     <div v-if="title" class="card__title">{{ title }}</div>
-    <div class="card__content">
+    <div class="card__content" :class="{ 'no-title': !title }">
       <slot :name="name" />
     </div>
   </div>
@@ -54,6 +54,10 @@ const cardStyles = computed(() => {
   &__content {
     @apply w-full h-[calc(var(--card-height)-1.5rem)];
     @apply rounded-b-[10px];
+
+    &.no-title {
+      @apply h-full;
+    }
   }
 
   &:hover {

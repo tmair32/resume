@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { galleryItems } from "~/common/Items";
+import { CardType } from "~/types/common";
 
 const props = defineProps<{
   minimapToGalleryWidthScale: number;
@@ -7,7 +8,7 @@ const props = defineProps<{
 }>();
 
 const minimapItems = computed(() => {
-  return galleryItems.map((item) => {
+  return galleryItems.map((item: CardType) => {
     const { width, height, left, top } = item;
     // delete 'px'
     const widthNumber = Number(width.slice(0, -2));
