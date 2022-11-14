@@ -4,6 +4,8 @@ import { resolve } from "path";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import eslintPlugin from "vite-plugin-eslint";
+import Icons from "unplugin-icons/vite";
+import IconsResolver from "unplugin-icons/resolver";
 import Pages from "vite-plugin-pages";
 import vue from "@vitejs/plugin-vue";
 import WindiCSS from "vite-plugin-windicss";
@@ -38,8 +40,13 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/],
       deep: true,
       dts: true,
+      resolvers: [IconsResolver({ componentPrefix: "" })],
     }),
     eslintPlugin(),
+    Icons({
+      autoInstall: true,
+      defaultStyle: "vertical-align: middle;",
+    }),
     Pages({
       dirs: [
         {
