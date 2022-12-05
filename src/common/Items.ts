@@ -18,7 +18,8 @@ export const galleryItems: CardType[] = [
     top: "400px",
   },
   {
-    title: "Card 3",
+    name: "wizdome",
+    title: "Wizdome",
     width: "800px",
     height: "300px",
     left: "2400px",

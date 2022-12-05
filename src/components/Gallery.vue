@@ -18,6 +18,9 @@ import { galleryItems } from "~/common/Items";
     <template #career>
       <careers />
     </template>
+    <template #wizdome>
+      <wizdome />
+    </template>
   </card>
 </template>
 

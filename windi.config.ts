@@ -6,12 +6,16 @@ export default defineConfig({
   extract: {
     include: ["index.html", "src/**/*.{vue, ts}"],
   },
-  plugins: [require("@windicss/plugin-question-mark")],
+  plugins: [
+    require("@windicss/plugin-question-mark"),
+    require("@windicss/plugin-scrollbar"),
+  ],
   theme: {
     extend: {
       fontFamily: {
         poppins: "Poppins",
         pretendard: "Pretendard",
+        yeonsung: "Yeon Sung",
       },
       colors: {
         "star-color-A": colors.white,
