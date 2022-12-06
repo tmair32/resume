@@ -51,7 +51,7 @@ export default defineConfig({
       dirs: [
         {
           dir: "src/pages",
-          baseRoute: "",
+          baseRoute: "/resume/",
         },
       ],
       extensions: ["vue"],
