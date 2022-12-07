@@ -21,7 +21,7 @@ export const galleryItems: CardType[] = [
     name: "wizdome",
     title: "Wizdome",
     width: "800px",
-    height: "300px",
+    height: "500px",
     left: "2400px",
     top: "400px",
   },

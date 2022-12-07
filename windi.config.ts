@@ -13,6 +13,7 @@ export default defineConfig({
   theme: {
     extend: {
       fontFamily: {
+        nanumBrush: "Nanum Brush Script",
         poppins: "Poppins",
         pretendard: "Pretendard",
         yeonsung: "Yeon Sung",
